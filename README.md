@@ -1,1 +1,1 @@
-# This is where I upload coding exercises using Python and NumPy.
+#### This is where I upload coding exercises that I practice using Python and NumPy.
