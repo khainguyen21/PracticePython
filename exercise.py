@@ -1,23 +1,13 @@
-## Lesson 1
-
+# # Lesson 1
+#
 # # Ex1: Write a program to count positive and negative numbers in a list
 # data1 = [-10, -21, -4, -45, -66, 93, 11, -4, -6, 12, 11, 4]
 #
-# # Initialize counters for positive and negative numbers
-# positive = 0
-#
-# # Loop through each number in a list
-# for number in data1:
-#
-#     # Increment positive counter by one if current number is positive
-#     if number > 0:
-#         positive += 1
-#
-# negative = len(data1) - positive
+# positive_array = [postive_num for postive_num in data1 if postive_num > 0]
 #
 # # Display total positive and negative number in a list
-# print("Total positive number in a list is ", positive)
-# print("Total negative number in a list is ", negative)
+# print("Total positive number in a list is ", len(positive_array))
+# print("Total negative number in a list is ", len(data1) - len(positive_array))
 
 # # Ex2: Given a list, extract all elements whose frequency is greater than k.
 # data2 = [4, 6, 4, 3, 3, 4, 3, 4, 3, 8]
@@ -197,33 +187,52 @@ import gensim.downloader as api
 import numpy as np
 
 # 25, 50, 100 or 200. Số càng lớn thì càng chính xác, nhưng chạy càng lâu các bạn nhé
-model = api.load("glove-twitter-50")
-word = "beautiful"
-print(model[word])
+model = api.load("glove-twitter-25")
 
-print("1----------")
-result = model.most_similar(word, topn=10)
-print(result)
+vec1 = model["man"]
+vec2 = model["woman"]
+#def calculate_similarity (word1, word2):
+dot_product = sum(word1 * word2 for word1, word2 in zip(vec1, vec2))
 
-print("2----------")
-result = model.most_similar(positive=["january", "february"], topn=10)
-print(result)
+magnitude_man = np.sqrt(sum(a**2 for a in vec1))
+magnitude_woman = np.sqrt(sum(b**2 for b in vec2))
 
-print("3----------")
+similarity = dot_product / (magnitude_woman * magnitude_man)
+print(similarity)
+
 result = model.similarity("man", "woman")
 print(result)
 
-print("4----------")
-result = model.most_similar(positive=["woman", "king"], negative=["man"], topn=1)
-print(result)
 
-print("5----------")
-result = model.most_similar(positive=["berlin", "vietnam"], negative=["hanoi"], topn=1)
-print(result)
 
-print("6----------")
-result = model.similarity("marriage", "happiness")
-print(result)
+
+
+
+
+
+# print("1----------")
+# result = model.most_similar(word, topn=10)
+# print(result)
+
+# print("2----------")
+# result = model.most_similar(positive=["january", "february"], topn=10)
+# print(result)
+#
+# print("3----------")
+# result = model.similarity("man", "woman")
+# print(result)
+#
+# print("4----------")
+# result = model.most_similar(positive=["woman", "king"], negative=["man"], topn=1)
+# print(result)
+#
+# print("5----------")
+# result = model.most_similar(positive=["berlin", "vietnam"], negative=["hanoi"], topn=1)
+# print(result)
+#
+# print("6----------")
+# result = model.similarity("marriage", "happiness")
+# print(result)
 
 
 #TODO: Các bạn thử viết 2 cách khác nhau để tính cosine similarity
