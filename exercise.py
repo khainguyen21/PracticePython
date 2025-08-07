@@ -187,21 +187,21 @@ import gensim.downloader as api
 import numpy as np
 
 # 25, 50, 100 or 200. Số càng lớn thì càng chính xác, nhưng chạy càng lâu các bạn nhé
-model = api.load("glove-twitter-25")
-
-vec1 = model["man"]
-vec2 = model["woman"]
-#def calculate_similarity (word1, word2):
-dot_product = sum(word1 * word2 for word1, word2 in zip(vec1, vec2))
-
-magnitude_man = np.sqrt(sum(a**2 for a in vec1))
-magnitude_woman = np.sqrt(sum(b**2 for b in vec2))
-
-similarity = dot_product / (magnitude_woman * magnitude_man)
-print(similarity)
-
-result = model.similarity("man", "woman")
-print(result)
+# model = api.load("glove-twitter-25")
+#
+# vec1 = model["man"]
+# vec2 = model["woman"]
+# #def calculate_similarity (word1, word2):
+# dot_product = sum(word1 * word2 for word1, word2 in zip(vec1, vec2))
+#
+# magnitude_man = np.sqrt(sum(a**2 for a in vec1))
+# magnitude_woman = np.sqrt(sum(b**2 for b in vec2))
+#
+# similarity = dot_product / (magnitude_woman * magnitude_man)
+# print(similarity)
+#
+# result = model.similarity("man", "woman")
+# print(result)
 
 
 
@@ -238,3 +238,94 @@ print(result)
 #TODO: Các bạn thử viết 2 cách khác nhau để tính cosine similarity
 # giữa 2 vector nhé. Kết quả giống với khi dùng model.similarity() là được
 # 1 cách là dùng numpy, 1 cách là không dùng numpy nhé
+
+
+arr = [[0] * 4 for i in range(2)]
+print(arr)
+
+array = [0] * 4
+print(array)
+
+# String are similar to arrays
+s = "abc"
+print(s[0:2])
+
+# However they are immutable, we cannot do code below
+#s[0] = 'A'
+
+# So this creates a new string, anytime we modify the string, it's considered O(N) time operation
+s += "def"
+print(s)
+
+# Valid numeric strings can be converted
+print(int("123") + int ("123")) # Output: 246
+
+# And numbers can be converted to strings
+print(str(123) + str(123)) # Output: 123123
+
+# In rare, you may need the ASCII value of a char
+print(ord("a"))
+print(ord("b"))
+
+# Combine a list of string (with an empty string delimiter)
+strings = ["ab", "cd", "ef"]
+print("".join(strings)) # Output: abcdef
+print(" ".join(strings)) # Output: ab cd ef
+print(", ".join(strings)) # Output: ab, cd, ef
+
+
+# Queues (double ended queue) aka deque
+from collections import deque
+
+queue = deque()
+queue.append(1)
+queue.append(2)
+queue.append(3)
+queue.append(4)
+queue.append(5)
+print(queue) # deque([1, 2, 3, 4, 5])
+
+queue.pop()
+print(queue) # deque([1, 2, 3, 4])
+
+queue.popleft() # O(1)
+print(queue) # deque([2, 3, 4])
+
+queue.appendleft(1)
+print(queue) # deque([1, 2, 3, 4])
+
+
+# HashSet
+# Search them in O(1)
+# Insert them in O(1)
+
+mySet = set()
+
+mySet.add(1)
+mySet.add(2)
+print(mySet) # {1, 2}
+
+print(len(mySet)) # 2
+
+print(1 in mySet) # True
+print(2 in mySet) # True
+print(3 in mySet) # False
+
+mySet.remove(2)
+
+print(2 in mySet) # False
+
+
+# List to set
+print(set([1, 2, 3]))
+
+# Set comprehension
+mySet = {i for i in range(5)}
+
+print(mySet)
+
+
+
+
+
+
