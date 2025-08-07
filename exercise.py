@@ -182,10 +182,6 @@ import numpy as np
 #     print(f"{word}: {frequency}")
 
 
-
-import gensim.downloader as api
-import numpy as np
-
 # 25, 50, 100 or 200. Số càng lớn thì càng chính xác, nhưng chạy càng lâu các bạn nhé
 # model = api.load("glove-twitter-25")
 #
@@ -234,11 +230,13 @@ import numpy as np
 # result = model.similarity("marriage", "happiness")
 # print(result)
 
-
-#TODO: Các bạn thử viết 2 cách khác nhau để tính cosine similarity
+#
+# TODO: Các bạn thử viết 2 cách khác nhau để tính cosine similarity
 # giữa 2 vector nhé. Kết quả giống với khi dùng model.similarity() là được
 # 1 cách là dùng numpy, 1 cách là không dùng numpy nhé
 
+
+# Python for coding interviews
 
 arr = [[0] * 4 for i in range(2)]
 print(arr)
@@ -312,9 +310,7 @@ print(2 in mySet) # True
 print(3 in mySet) # False
 
 mySet.remove(2)
-
 print(2 in mySet) # False
-
 
 # List to set
 print(set([1, 2, 3]))
@@ -325,7 +321,47 @@ mySet = {i for i in range(5)}
 print(mySet)
 
 
+# HaspMap (aka dict)
 
+myMap = {}
+myMap["alice"] = 88
+myMap["bob"] = 77
+
+print(myMap) # {'alice': 88, 'bob': 77}
+print(len(myMap))  # 2
+
+myMap["alice"] = 81
+print(myMap) # {'alice': 81, 'bob': 77}
+print(myMap["alice"]) # 81
+
+print("alice" in myMap) # Search in constant time O(1) True
+myMap.pop("alice")
+
+print("alice" in myMap) # Search in constant time O(1) False
+
+myMap = {"alice": 90, "bob": 70}
+print(myMap)
+
+# Dict comprehension
+myMap = {i : 2*i for i in range(3)}
+print(myMap) # {0: 0, 1: 2, 2: 4}
+
+# Looping through maps
+print()
+myMap = {"alice": 90, "bob": 70}
+
+for key in myMap:
+    print(f"{key}: {myMap[key]}")
+    # alice: 90
+    # bob: 70
+
+for val in myMap.values():
+    print(val)
+    # 90
+    # 70
+
+for key, val in myMap.items():
+    print(key, val)
 
 
 
