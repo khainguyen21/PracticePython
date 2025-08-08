@@ -238,6 +238,117 @@ import numpy as np
 
 # Python for coding interviews
 
+# Arrays (called lists in python)
+arr = [1, 2, 3]
+print(arr) # [1, 2, 3]
+
+# Can be used as a stack
+arr.append(4)
+arr.append(5)
+print(arr) # [1, 2, 3, 4, 5]
+
+arr.pop()
+print(arr) # [1, 2, 3, 4]
+
+print()
+# Technically this is an array not a stack we can insert into the middle O(n)
+arr.insert(1, 7)
+print(arr) # [1, 7, 2, 3, 4]
+
+arr[0] = 0 # O(1)
+arr[3] = 0 # O(1)
+print(arr[0]) # O(1) 0
+print(arr) # O(1) [0, 7, 2, 0, 4]
+
+print()
+# Initialize arr of size n with default value of 1
+n = 5
+arr = [1] * n
+print(arr) # [1, 1, 1, 1, 1]
+print(len(arr)) # 5
+
+print()
+# Careful: -1 is not out of bounds
+# it's the last value
+arr = [1, 2, 3]
+print(arr[-1]) # 3
+# Indexing -2 is the second to last value, etc
+print(arr[-2]) # 2
+
+
+# Sublists (aka slicing)
+arr = [1, 2, 3, 4]
+print(arr[1:3]) # from index 1 to index 3 not including 3 just like for loop [2, 3]
+
+# Similar to for-loop ranges, last index is non-inclusive
+print(arr[0:4]) # [1, 2, 3, 4]
+
+
+# Unpacking
+a, b, c = [1, 2, 3]
+print(a, b, c) # 1 2 3
+
+# Be careful
+#  a, b = [1, 2, 3] # The amount of left side has to be matched along with the right side
+
+print()
+# Loop through arrays
+nums = [1, 2, 3]
+
+# Using index
+for i in range(len(nums)):
+    print(nums[i])
+
+# Without index
+for num in nums:
+    print(num)
+
+# With index and value
+for i, n in enumerate(nums):
+    print(f"at index {i}, value is: {n}")
+    # at index 0, value is: 1
+    # at index 1, value is: 2
+    # at index 2, value is: 3
+# Loop through multiple arrays simultaneously
+# with unpacking
+nums1 = [1, 3, 5]
+nums2 = [2, 4, 6]
+
+for n1, n2 in zip(nums1, nums2):
+    print(n1, n2)
+    # 1 2
+    # 3 4
+    # 5 6
+# Reverse
+nums = [1, 2, 3]
+nums.reverse()
+print(nums) # [3, 2, 1]
+
+# Sorting
+arr = [5, 4, 7, 3, 8]
+arr.sort()
+print(arr) # [3, 4, 5, 7, 8]
+
+arr.sort(reverse=True)
+print(arr) # [8, 7, 5, 4, 3]
+
+arr = ["bob", "alice", "jane", "doe"]
+arr.sort()
+print(arr) #['alice', 'bob', 'doe', 'jane']
+
+
+# Customer sort (by the length of string)
+arr.sort(key=lambda x: len(x))
+print(arr) #['bob', 'doe', 'jane', 'alice']
+
+
+# List comprehesion
+arr =  [i for i in range(5)]
+print(arr) # [0, 1, 2, 3, 4]
+arr =  [i+1 for i in range(5)]
+print(arr) # [1, 2, 3, 4, 5]
+
+
 arr = [[0] * 4 for i in range(2)]
 print(arr)
 
@@ -385,5 +496,61 @@ myMap = {(1,2): 3}
 print(myMap[(1, 2)])
 print(myMap)
 
+print()
+# Heaps
+import heapq
+
+# under the hood are arrays
+minHeap = []
+
+# default the heap in python is minheap
+heapq.heappush(minHeap, 3)
+heapq.heappush(minHeap, 2)
+heapq.heappush(minHeap, 4)
+
+# Min is always at index 0
+print(minHeap[0])
+while len(minHeap):
+    print(heapq.heappop(minHeap))
+
+
+print()
+# NO max heaps by default, work around is
+# to use min heap and multiply by -1 when
+# push & pop
+maxHeap = []
+heapq.heappush(maxHeap, -3)
+heapq.heappush(maxHeap, -2)
+heapq.heappush(maxHeap, -4)
+
+# Max is always at index 0
+print(-1 * maxHeap[0])
+
+while len(maxHeap):
+    print(-1 * heapq.heappop(maxHeap))
+
+print()
+# Build head from initial values
+arr = [2, 1, 8, 4, 5]
+heapq.heapify(arr) # O(n)
+
+while arr: # while the array is not empty
+    print(heapq.heappop(arr))
+
+
+# Functions
+def myFunc(n, m):
+    return n * m
+
+# Nested functions have access to outer
+# variables
+def outer (a, b):
+    c = "c"
+
+    def inner():
+        return a + b + c # Still have access to c variable
+    return inner()
+
+print(outer("a", "b"))
 
 
