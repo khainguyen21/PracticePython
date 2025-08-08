@@ -294,6 +294,10 @@ print(queue) # deque([1, 2, 3, 4])
 
 
 # HashSet
+#set (HashSet): A set stores only unique elements.
+# It's an unordered collection with no duplicate items.
+# You can't have the same element in a set more than once.
+
 # Search them in O(1)
 # Insert them in O(1)
 
@@ -322,6 +326,9 @@ print(mySet)
 
 
 # HaspMap (aka dict)
+# dict (HashMap): A dictionary stores data as pairs.
+# Each item consists of a unique key and its corresponding value.
+# You use the key to look up the value.
 
 myMap = {}
 myMap["alice"] = 88
@@ -362,6 +369,21 @@ for val in myMap.values():
 
 for key, val in myMap.items():
     print(key, val)
+
+
+# Tuples are like arrays but immutable
+tup = (1, 2, 3)
+print(tup)
+print(tup[0])
+print(tup[-1])
+
+# Cannot modify
+#tup[0] = 0 # This cannot work
+
+# You'll mainly be using tuples as keys a hashmap or hashset
+myMap = {(1,2): 3}
+print(myMap[(1, 2)])
+print(myMap)
 
 
 
