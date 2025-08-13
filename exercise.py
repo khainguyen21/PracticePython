@@ -552,3 +552,97 @@ def outer (a, b):
     return inner()
 
 print(outer("a", "b"))
+
+print()
+def romanToInt(s):
+    map = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+
+    result = 0
+    i = 0
+    while i < len(s):
+        if i < len(s) - 1 and map[s[i]] < map[s[i + 1]]:
+            result += map[s[i + 1]] - map[s[i]]
+            i += 1
+        else:
+            result += map[s[i]]
+        i += 1
+
+    return result
+
+
+print(romanToInt("XXIVI"))
+
+
+def longestCommonPrefix(strs):
+    res = ""
+    firstStr = strs[0]
+    for i in range(len(firstStr)):
+        for s in strs:
+            if s[i] != firstStr[i]:
+                return res
+
+        res += (firstStr[i])
+
+
+print(longestCommonPrefix(["bat","bag","bank","band"]))
+
+print()
+
+def removeElement(nums, val):
+
+    for num in nums:
+        if val == num:
+            nums.remove(num)
+
+    return len(nums)
+
+print(removeElement([1,1,2,3,4],1))
+
+
+def isPalindrome(s):
+    left = 0
+    right = len(s) - 1
+
+    while (left < right and isAlphaNum(s[right]) and isAlphaNum(s[left])):
+        if s[right].lower() != s[left].lower():
+            return False
+
+        left += 1
+        right -= 1
+
+    return True
+
+
+def isAlphaNum(c):
+    return (ord('0') <= ord(c) <= ord('1') or
+            ord('A') <= ord(c) <= ord('Z') or
+            ord('a') <= ord(c) <= ord('z'))
+
+
+isPalindrome("race a car")
+
+
+def majorityElement( nums):
+    #thresHold = len(nums) / 2
+    myMap = {}
+
+    res, maxCount = 0, 0
+    for i, num in enumerate(nums):
+        if num not in myMap:
+            myMap[num] = 1
+
+        else:
+            myMap[num] += 1
+
+        if myMap[num] > maxCount:
+            res = num
+
+        maxCount = max(myMap[num], maxCount)
+
+    return res
+
+
+majorityElement([5,5,1,1,1,5,5])
+
+
+
