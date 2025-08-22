@@ -120,6 +120,7 @@
 
 ### Lesson 2
 import numpy as np
+from scipy.cluster.hierarchy import correspond
 
 # Ex1: Write a NumPy program to reverse an array (first element becomes last).
 # Input: [12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37]
@@ -508,7 +509,7 @@ heapq.heappush(minHeap, 3)
 heapq.heappush(minHeap, 2)
 heapq.heappush(minHeap, 4)
 
-# Min is always at index 0
+# minimum value is always at index 0
 print(minHeap[0])
 while len(minHeap):
     print(heapq.heappop(minHeap))
@@ -645,4 +646,28 @@ def majorityElement( nums):
 majorityElement([5,5,1,1,1,5,5])
 
 
+def isValid(s):
+    stack = []
 
+    if len(s) % 2 != 0:
+        return False
+
+    for c in s:
+        if s[i] == '{' or s[i] == '(' or s[i] == '[':
+            stack.append(s[i])
+
+
+        elif not stack:
+            return False
+        else:
+            if s[i] == '}' and '{' != stack.pop():
+                return False
+            elif s[i] == ')' and '(' != stack.pop():
+                return False
+            elif s[i] == ']' and '[' != stack.pop():
+                return False
+            else:
+                return False
+    return len(stack) == 0
+
+print(isValid("([{}])"))
