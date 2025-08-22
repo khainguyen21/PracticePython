@@ -671,3 +671,24 @@ def isValid(s):
     return len(stack) == 0
 
 print(isValid("([{}])"))
+
+
+def plusOne(digits) :
+    digits = digits[::-1]
+    one, i = True, 0
+    while one:
+        if i < len(digits):
+            if digits[i] == 9:
+                digits[i] = 0
+                i += 1
+            else:
+                digits[i] += 1
+                one = False
+        else:
+            digits.append(1)
+
+
+    return digits[::-1]
+
+
+print(plusOne([9]))
