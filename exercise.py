@@ -8,6 +8,7 @@
 # # Display total positive and negative number in a list
 # print("Total positive number in a list is ", len(positive_array))
 # print("Total negative number in a list is ", len(data1) - len(positive_array))
+from typing import Optional
 
 # # Ex2: Given a list, extract all elements whose frequency is greater than k.
 # data2 = [4, 6, 4, 3, 3, 4, 3, 4, 3, 8]
@@ -713,3 +714,107 @@ def intersect(nums1, nums2) :
 
     return res
 print(intersect([4,9,5], [9,4,9,8,4]))
+
+class ListNode:
+    def __init__(self, x):
+        self.val = x
+        self.next = None
+
+def hasCycle(head: Optional[ListNode]) -> bool:
+    # Floyd's Tortoise and Hare algorithm
+    slow = head
+    fast = head
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+        if slow is fast:
+            return True
+    return False
+
+def list_to_linked(values):
+    # Helper to convert a Python list into a linked list and return the head
+    dummy = ListNode(0)
+    curr = dummy
+    for v in values:
+        curr.next = ListNode(v)
+        curr = curr.next
+    return dummy.next
+
+def isPalindrome(head: Optional[ListNode]):
+    slow , fast = head , head
+    stack = []
+    curr = head
+    while fast:
+
+        if slow.val != fast.val:
+            stack.append(slow.val)
+            slow = curr.next
+            fast = fast.next
+        else:
+            while fast:
+                if not stack or fast.next.val != stack.pop():
+                    return False
+                fast = fast.next
+
+    return True
+
+
+def deleteDuplicates(head: Optional[ListNode]) :
+    prev = head
+    curr = head.next
+
+    while curr:
+        if prev.next.val != curr.val:
+            prev.next = curr
+            prev = curr
+        curr = curr.next
+
+    return prev
+#
+# if __name__ == "__main__":
+#     # Build a linked list and pass the head node
+#     head1 = list_to_linked([1, 2])
+#     print(isPalindrome(head1))  # True
+#
+#     print(deleteDuplicates(list_to_linked[1,1,2,3,3]))
+
+
+def countStudents(students, sandwiches):
+    student_queue = deque(students)
+    total_tries = len(students)
+    s_idx = 0
+    while total_tries > 0 and s_idx < len(sandwiches):
+
+        if student_queue[0] != sandwiches[s_idx]:
+
+            front_student = student_queue.popleft()
+
+            student_queue.append(front_student)
+
+            total_tries -= 1
+
+        else:
+            student_queue.popleft()
+            s_idx += 1
+            total_tries = len(student_queue)
+
+    return len(student_queue)
+
+
+print(countStudents([1,1,0,0], [0,1,0,1]))
+
+
+def addDigits(num):
+    if num == 0:
+        return 0
+
+    while num >= 10:
+        res = 0
+        while num >= 1:
+            res += num % 10
+            num //= 10
+        num = res
+
+    return num
+
+print(addDigits(38))
