@@ -818,3 +818,25 @@ def addDigits(num):
     return num
 
 print(addDigits(38))
+
+
+def isHappy(n: int):
+    count = set()
+
+    while n not in count:
+        count.add(n)
+        res = 0
+
+        while n:
+            res += (n % 10) ** 2
+            n //= 10
+
+        n = res
+
+        if res == 1:
+            return True
+
+    return False
+
+
+print(isHappy(19))
